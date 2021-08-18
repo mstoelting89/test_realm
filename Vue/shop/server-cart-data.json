@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "Die Uhr",
+        "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.",
+        "price": 139.99,
+        "quantity": 2
+    },
+    {
+        "id": 2,
+        "title": "Die Hose",
+        "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.",
+        "price": 79.99,
+        "quantity": 1
+    },
+    {
+        "id": 3,
+        "title": "Den Pullover",
+        "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.",
+        "price": 99.99,
+        "quantity": 1
+    },
+    {
+        "id": 4,
+        "title": "Die Schuhe",
+        "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam.",
+        "price": 119.99,
+        "quantity": 1
+    }
+]
