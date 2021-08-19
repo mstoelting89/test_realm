@@ -4,8 +4,8 @@
 
     <div class="row">
       <div class="col-3"
-           v-for="i in 4"
-           :key="i"
+           v-for="productItem in productItems"
+           :key="productItem.id"
       >
         <div
             class="card m-3"
@@ -24,7 +24,7 @@
           <span class="product-discount-label bg-vue2">20%</span>
 
           <div class="card-body">
-            <h6 class="card-title">Produkt 1</h6>
+            <h6 class="card-title">{{ productItem.title }}</h6>
             <p class="card-subtitle text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
             <div class="text-center mt-3">
               <div class="lead">
@@ -40,7 +40,15 @@
 </template>
 <script>
 export default {
-  name: 'ProductList'
+  name: 'ProductList',
+  created() {
+    this.$store.dispatch("getProductItems");
+  },
+  computed: {
+    productItems() {
+      return this.$store.getters.productItems;
+    }
+  }
 }
 </script>
 <style scoped>
