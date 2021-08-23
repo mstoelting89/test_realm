@@ -11,12 +11,26 @@ const mutations = {
 }
 
 const actions = {
-    getCartItems({commit}) {
+    getCartItems({ commit }) {
         axios.get('/api/cart')
             .then((response) => {
                 commit('UPDATE_CART_ITEMS', response.data)
             });
-    }
+    },
+    addCartItem({ commit }, payload) {
+        console.log(payload);
+        axios.post('/api/cart', payload)
+            .then((response) => {
+                console.log(response);
+                commit('UPDATE_CART_ITEMS', response.data)
+            });
+    },
+    removeCartItem({ commit }, payload) {
+        axios.post('/api/cart/delete', payload)
+            .then((response) => {
+                commit('UPDATE_CART_ITEMS', response.data)
+            });
+    },
 }
 
 const getters = {

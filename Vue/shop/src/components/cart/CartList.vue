@@ -58,19 +58,19 @@
 
 </template>
 <script>
+import { mapGetters } from 'vuex';
 import CartListItem from "@/components/cart/CartListItem";
+
   export default {
     name: 'CartList',
     components: {
       CartListItem
     },
     computed: {
-      cartItems() {
-        return this.$store.getters.cartItems;
-      },
-      cartTotal() {
-        return this.$store.getters.cartTotal;
-      },
+      ...mapGetters([
+        'cartItems',
+        'cardTotal'
+      ]),
       cartTotalWithoutTaxes() {
         return parseFloat(this.cartTotal - this.cartTaxes).toFixed(2);
       },
