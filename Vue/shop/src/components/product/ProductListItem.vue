@@ -9,7 +9,7 @@
     <ul class="actions">
       <li><button class="btn bg-vue" data-tip="Anschauen"><i class="fa fa-search"></i></button></li>
       <li><button class="btn bg-vue" data-tip="Merkzettel"><i class="far fa-heart"></i></button></li>
-      <li><button class="btn bg-vue" data-tip="Zum Warenkorb"><i class="fa fa-shopping-cart"></i></button></li>
+      <li><button class="btn bg-vue" data-tip="Zum Warenkorb" @click="addItemToCart(productItem)"><i class="fa fa-shopping-cart"></i></button></li>
     </ul>
 
     <div v-if="getDiscount >= 20">
@@ -39,6 +39,11 @@ export default {
   computed: {
     getDiscount() {
       return parseFloat((1 - this.productItem.price/this.productItem.origPrice)*100).toFixed(0);
+    }
+  },
+  methods: {
+    addItemToCart(productItem) {
+      this.$store.dispatch("addCartItem", productItem);
     }
   }
 }
