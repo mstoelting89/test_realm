@@ -25,5 +25,11 @@ export const actions = {
             .then((response) => {
                 commit(types.UPDATE_CART_ITEMS, response.data)
             });
+    },
+    removeCompleteItem({ commit }, payload) {
+        axios.post('/api/cart/product/delete', payload)
+            .then((response) => {
+                commit(types.UPDATE_CART_ITEMS, response.data)
+            });
     }
 }

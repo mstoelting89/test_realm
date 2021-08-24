@@ -27,7 +27,7 @@
 
     </td>
     <td class="align-middle">
-      <i class="fa fa-trash"></i>
+      <i class="fa fa-trash" @click="removeCompleteItem(cartItem)"></i>
     </td>
   </tr>
 </template>
@@ -40,7 +40,8 @@ export default {
   methods: {
     ...mapActions([
         'addCartItem',
-        'removeCartItem'
+        'removeCartItem',
+        'removeCompleteItem'
     ])
   }
 }

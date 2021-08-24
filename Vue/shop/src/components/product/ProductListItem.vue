@@ -8,7 +8,8 @@
     >
     <ul class="actions">
       <li><button class="btn bg-vue" data-tip="Anschauen"><i class="fa fa-search"></i></button></li>
-      <li><button class="btn bg-vue" data-tip="Merkzettel"><i class="far fa-heart"></i></button></li>
+      <li><button class="btn bg-vue" data-tip="Merkzettel" @click="addProductToFavorite(productItem)" v-if="!isFavorite"><i class="far fa-heart"></i></button></li>
+      <li><button class="btn bg-vue" data-tip="Merkzettel" @click="removeProductToFavorite(productItem)" v-if="isFavorite"><i class="fas fa-heart"></i></button></li>
       <li><button class="btn bg-vue" data-tip="Zum Warenkorb" @click="addItemToCart(productItem)"><i class="fa fa-shopping-cart"></i></button></li>
     </ul>
 
@@ -20,7 +21,7 @@
 
 
     <div class="card-body">
-      <h6 class="card-title">{{ productItem.title }}</h6>
+      <h6 class="card-title">{{ productItem.title }} <span class="float-right" v-if="isFavorite"><i class="fas fa-heart"></i></span></h6>
       <p class="card-subtitle text-muted">{{ productItem.description }}</p>
       <div class="text-center mt-3">
         <div class="lead">
@@ -33,18 +34,24 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: "ProductListItem",
   props: ['productItem'],
   computed: {
     getDiscount() {
       return parseFloat((1 - this.productItem.price/this.productItem.origPrice)*100).toFixed(0);
+    },
+    isFavorite() {
+      return this.$store.getters.isFavorite(this.productItem);
     }
   },
   methods: {
-    addItemToCart(productItem) {
-      this.$store.dispatch("addCartItem", productItem);
-    }
+    ...mapActions({
+      addItemToCart: 'addCartItem',
+      addProductToFavorite: 'addFavoriteItem',
+      removeProductToFavorite: 'removeFavoriteItem'
+    })
   }
 }
 </script>

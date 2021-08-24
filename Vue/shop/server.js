@@ -72,6 +72,22 @@ app.post('/cart/delete', (req, res) => {
   });
 });
 
+// Einzelnes Item löschen
+app.post('/cart/product/delete', (req, res) => {
+  fs.readFile(CART_DATA_FILE, (err, data) => {
+    let cartProducts = JSON.parse(data);
+
+    const filteredCartItems = cartProducts.filter((cartProduct) => {
+      return cartProduct.id != req.body.id;
+    });
+
+    fs.writeFile(CART_DATA_FILE, JSON.stringify(filteredCartItems, null, 4), () => {
+      res.setHeader('Cache-Control', 'no-cache');
+      res.json(filteredCartItems);
+    });
+  });
+});
+
 app.post('/cart/delete/all', (req, res) => {
   fs.readFile(CART_DATA_FILE, () => {
     let emptyCart = [];
