@@ -7,7 +7,7 @@
         class="card-img-top"
     >
     <ul class="actions">
-      <li><button class="btn bg-vue" data-tip="Anschauen"><i class="fa fa-search"></i></button></li>
+      <li><router-link :to="'/products/' + productItem.id" tag="button" class="btn bg-vue" data-tip="Anschauen"><i class="fa fa-search"></i></router-link></li>
       <li><button class="btn bg-vue" data-tip="Merkzettel" @click="addProductToFavorite(productItem)" v-if="!isFavorite"><i class="far fa-heart"></i></button></li>
       <li><button class="btn bg-vue" data-tip="Merkzettel" @click="removeProductToFavorite(productItem)" v-if="isFavorite"><i class="fas fa-heart"></i></button></li>
       <li><button class="btn bg-vue" data-tip="Zum Warenkorb" @click="addItemToCart(productItem)"><i class="fa fa-shopping-cart"></i></button></li>

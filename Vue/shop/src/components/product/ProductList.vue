@@ -1,17 +1,20 @@
 <template>
-  <div>
-    <h3 class="text-uppercase">Shop</h3>
-
+  <div class="container">
     <div class="row">
-      <div class="col-3"
-           v-for="productItem in productItems"
-           :key="productItem.id"
-      >
-        <ProductListItem
-          :productItem="productItem"
-          ></ProductListItem>
+      <div class="col-12">
+        <div class="row">
+          <div class="col-3"
+               v-for="productItem in productItems"
+               :key="productItem.id"
+          >
+            <ProductListItem
+                :productItem="productItem"
+            ></ProductListItem>
+          </div>
+        </div>
       </div>
     </div>
+
   </div>
 </template>
 <script>
@@ -20,9 +23,6 @@ export default {
   name: 'ProductList',
   components: {
     ProductListItem
-  },
-  created() {
-    this.$store.dispatch("getProductItems");
   },
   computed: {
     productItems() {
