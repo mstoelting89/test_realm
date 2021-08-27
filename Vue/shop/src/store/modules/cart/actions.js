@@ -9,7 +9,7 @@ export const actions = {
             });
     },
     addCartItem({ commit }, payload) {
-        axios.post('/api/cart', payload)
+        return axios.post('/api/cart', payload)
             .then((response) => {
                 commit(types.UPDATE_CART_ITEMS, response.data)
             });
