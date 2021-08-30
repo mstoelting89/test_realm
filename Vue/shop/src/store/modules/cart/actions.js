@@ -2,8 +2,8 @@ import axios from "axios";
 import * as types from "./mutation-type";
 
 export const actions = {
-    getCartItems({ commit }) {
-        axios.get('/api/cart')
+    getCartItems({ commit }, token) {
+        axios.get(`/api/cart?token=${token}`)
             .then((response) => {
                 commit(types.UPDATE_CART_ITEMS, response.data)
             });
