@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-12">
-        <Navbar></Navbar>
+        <Navbar v-if="$route.path !== '/login'"></Navbar>
         <router-view></router-view>
       </div>
     </div>
@@ -11,19 +11,32 @@
 
 <script>
   import Navbar from './components/Navbar'
-
+  import { mapGetters } from 'vuex';
   export default {
     name: 'App',
     components: {
       Navbar
     },
+    computed: {
+      ...mapGetters([
+          'token'
+      ])
+    },
     created() {
       const token = localStorage.getItem('token');
+
       if (token) {
         this.$store.dispatch('getCartItems', token);
         this.$store.dispatch('getProductItems', token);
       }
-
+    },
+    watch: {
+      token() {
+        if(this.token) {
+          this.$store.dispatch('getCartItems', this.token);
+          this.$store.dispatch('getProductItems', this.token);
+        }
+      }
     }
   }
 </script>

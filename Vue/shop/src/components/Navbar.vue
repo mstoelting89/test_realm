@@ -9,7 +9,7 @@
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a href="" class="nav-link"><i class="fas fa-sign-in-alt mr-2"></i> Login</a>
+          <a href="" class="nav-link" @click="signout"><i class="fas fa-sign-out-alt mr-2"></i> Logout</a>
         </li>
         <li class="nav-item bg-vue2 ml-4 rounded">
           <router-link to="/cart" class="nav-link"><i class="fas fa-cart-arrow-down"></i>{{ countOfCartItems }} Artikel ({{ cartTotal }}€)</router-link>
@@ -28,6 +28,18 @@ export default {
       'countOfCartItems',
       'cartTotal'
     ])
+  },
+  methods: {
+    signout() {
+      this.$store
+          .dispatch('signout')
+          .then(() => {
+            this.$router.push('/login');
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+    }
   }
 }
 </script>

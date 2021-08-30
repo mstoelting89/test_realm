@@ -13,7 +13,12 @@ import NotFound from "@/components/error/NotFound";
 const routes = [
     {
         path: '/login',
-        component: Signin
+        component: Signin,
+        beforeEnter: (to, from, next) => {
+            const token = localStorage.getItem('token');
+            if (token) next('/')
+            else next();
+        }
     },
     {
         path: '/',
@@ -26,7 +31,11 @@ const routes = [
     {
         path: '/products/:id',
         component: ProductItem,
-        props: true
+        props: true /*,
+        beforeEnter: (to, from, next) => {
+            const id = to.params.id;
+
+        }*/
     },
     {
         path: '*',
@@ -34,7 +43,20 @@ const routes = [
     }
 ]
 
-export const router = new VueRouter({
+const router = new VueRouter({
     mode: "history",
     routes
+});
+
+// Globaler Route Guard
+router.beforeEach((to, from, next) => {
+    const token = localStorage.getItem('token');
+    if (!token && to.path !== '/login') {
+        next('/login');
+    } else {
+        next();
+    }
+
 })
+
+export default router;
