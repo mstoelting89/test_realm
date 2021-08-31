@@ -65,9 +65,7 @@
                 <h5 class="font-weight-bold">{{ cartTotalWithShipping }} €</h5>
               </li>
             </ul>
-            <button
-                class="btn bg-vue rounded-pill py-2 btn-block"
-            >Zur Kasse</button>
+            <router-link tag="button" to="/checkout" class="btn bg-vue rounded-pill py-2 btn-block">Zur Kasse</router-link>
           </div>
         </div>
       </div>

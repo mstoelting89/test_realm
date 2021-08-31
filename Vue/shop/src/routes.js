@@ -8,6 +8,7 @@ import Signin from './components/auth/signin'
 import ProductList from './components/product/ProductList'
 import CartList from "@/components/cart/CartList";
 import ProductItem from "@/components/product/ProductItem";
+import CartCheckout from "@/components/cart/CartCheckout";
 import NotFound from "@/components/error/NotFound";
 
 const routes = [
@@ -36,6 +37,10 @@ const routes = [
             const id = to.params.id;
 
         }*/
+    },
+    {
+        path: '/checkout',
+        component: CartCheckout
     },
     {
         path: '*',
