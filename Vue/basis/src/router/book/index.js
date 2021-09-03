@@ -1,11 +1,11 @@
 const bookRoutes = [
     {
         path: '/book',
-        component: () => import('@layouts/MainLayout.vue'),
+        component: () => import(/* webpackChunkName: "MainLayout" */ '@layouts/MainLayout.vue'),
         children: [
             {
                 path: '',
-                component: () => import('@pages/book/BookList.vue')
+                component: () => import(/* webpackChunkName: "BookList" */ '@pages/book/BookList.vue')
             }
         ]
     }

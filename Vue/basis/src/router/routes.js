@@ -3,11 +3,11 @@ import bookRoutes from "@/router/book";
 const appRoutes = [
     {
         path: '/',
-        component: () => import('@layouts/MainLayout.vue'),
+        component: () => import(/* webpackChunkName: "MainLayout" */ '@layouts/MainLayout.vue'),
         children: [
             {
                 path: '',
-                component: () => import('@pages/HomePage.vue'),
+                component: () => import(/* webpackChunkName: "HomePage" */ '@pages/HomePage.vue'),
             }
         ]
     }
