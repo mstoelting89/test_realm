@@ -68,9 +68,9 @@
         ]
     </script>
 
-    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/vue@next"></script>
     <script>
-
+        /*
         Vue.component('entry-component', {
             props: ['entry', 'entries'],
             template: `
@@ -108,12 +108,41 @@
                     entry.votesDown++;
                 }
             }
-        });
+        });*/
 
-        new Vue({
+
+        /*new Vue({
             el: '#app',
             data: {
                 entries: entries
+            },
+            computed: {
+                sortedEntries () {
+                    return this.entries.sort((a,b) => {
+                        return (b.votes - b.votesDown) - (a.votes - a.votesDown)
+                    });
+                }, */
+                /*totalVotes () {
+                    return this.entries.reduce((totalVotes, entry) => {
+                        return totalVotes + entry.votes;
+                    }, 0);
+                }*/ /*
+                totalVotes() {
+                    let total = 0;
+                    this.entries.forEach((index, value) => {
+                        total += index.votes;
+                        total += index.votesDown;
+                    });
+                    return total;
+                }
+            }
+        }); */
+
+        const app = Vue.createApp({
+            data() {
+                return {
+                    entries: entries
+                }
             },
             computed: {
                 sortedEntries () {
@@ -135,7 +164,48 @@
                     return total;
                 }
             }
-        });
+        })
+
+        app.component('entry-component', {
+            props: ['entry', 'entries'],
+            template: `
+                <div class="media my-3">
+                    <img :src="entry.image" alt="" class="mr-2" style="float:left; margin-right: 2rem;">
+                    <div class="media-body">
+                        <h5>
+                            {{ entry.title }}({{ countDifference }})
+                            <span class="text-primary" style="float:right;cursor:pointer;" @click="downvote(entry.id)">
+                            <strong style="margin-right:0.5rem;">{{ entry.votesDown }}</strong><i class="fa fa-chevron-down"></i></span>
+
+                            <span class="text-primary" style="float:right;cursor:pointer;margin-right:0.5rem;" @click="upvote(entry.id)">
+                            <strong style="margin-right:0.5rem;">{{ entry.votes }}</strong><i class="fa fa-chevron-up"></i></span>
+
+                        </h5>
+                        <div>
+                            {{ entry.desc }}
+                        </div>
+                        <small class="text-muted">Eingereicht von: {{ entry.author }}</small>
+                    </div>
+                </div>
+            `,
+            computed: {
+                countDifference() {
+                    return this.entry.votes - this.entry.votesDown;
+                }
+            },
+            methods: {
+                upvote(entryId) {
+                    const entry = this.entries.find ( entry => entry.id === entryId);
+                    entry.votes++;
+                },
+                downvote(entryId) {
+                    const entry = this.entries.find ( entry => entry.id === entryId);
+                    entry.votesDown++;
+                }
+            }
+        })
+
+        app.mount('#app');
     </script>
 </body>
 </html>
