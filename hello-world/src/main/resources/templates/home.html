@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Home</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+  <p th:text="'Ich bin eine Thymeleaf-View!'" />
+  <table>
+    <tr th:each="person: ${personList}">
+      <td th:text="${person.firstname}" />
+      <td th:text="${person.lastname}" />
+    </tr>
+  </table>
+</body>
+</html>
