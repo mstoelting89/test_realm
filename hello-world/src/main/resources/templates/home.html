@@ -6,11 +6,22 @@
 </head>
 <body>
   <p th:text="'Ich bin eine Thymeleaf-View!'" />
+
   <table>
-    <tr th:each="person: ${personList}">
+    <tr>
       <td th:text="${person.firstname}" />
       <td th:text="${person.lastname}" />
     </tr>
   </table>
+
+  <h1>Name</h1>
+  <form th:action="@{/}" th:object="${person}" method="post">
+
+    <p>Vorname: <input type="text" th:field="*{firstname}"/></p>
+    <p>Nachname: <input type="text" th:field="*{lastname}" /></p>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+
+  </form>
+
 </body>
 </html>
