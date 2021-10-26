@@ -8,7 +8,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -17,12 +19,21 @@ public class PersonController {
     @Autowired
     PersonRepository personRepository;
 
+    @Autowired
+    PersonService personService;
+
     @GetMapping("/")
     @ResponseBody
     public String home() {
+
         Optional<Person> person = personRepository.findById(-1L);
+        //List<Person> persons = (List<Person>) personRepository.findByFirstname("Max");
+        //List<Person> persons = (List<Person>) personRepository.findAll();
+
+
         if(person.isPresent()) {
             return person.get().getLastname();
+
         } else {
             return "Keine Person mit dieser Id gefunden";
         }
