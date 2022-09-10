@@ -5,3 +5,5 @@ abstract class AuthEvent {}
 
 class SignOutPressedEvent extends AuthEvent {}
 
+class AuthCheckRequestedEvent extends AuthEvent {}
+

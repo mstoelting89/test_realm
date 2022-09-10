@@ -3,6 +3,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../core/failures/auth_failures.dart';
+import '../entities/user.dart';
 
 abstract class AuthRepository {
 

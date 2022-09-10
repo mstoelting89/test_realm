@@ -59,6 +59,7 @@ class SignUpForm extends StatelessWidget {
     final themeData = Theme.of(context);
 
     return BlocConsumer<SignupFormBloc, SignupFormState>(
+      listenWhen: (previous, current) => previous.authFailureOrSuccessOption != current.authFailureOrSuccessOption,
       listener: (context, state) {
         state.authFailureOrSuccessOption.fold(
           () => {},
@@ -75,7 +76,7 @@ class SignUpForm extends StatelessWidget {
               );
             },
             (_) {
-              AutoRouter.of(context).push(const HomePageRoute());
+              AutoRouter.of(context).replace(const HomePageRoute());
             },
           ),
         );
