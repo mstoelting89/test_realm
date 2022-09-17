@@ -4,7 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todo/application/auth/signup_form/signup_form_bloc.dart';
 import 'package:todo/core/failures/auth_failures.dart';
 import 'package:todo/presentation/routes/router.gr.dart';
-import 'package:todo/presentation/signup/widgets/signin_register_button.dart';
+import 'package:todo/presentation/core/custom_button.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({Key? key}) : super(key: key);
@@ -130,7 +130,7 @@ class SignUpForm extends StatelessWidget {
               const SizedBox(
                 height: 40,
               ),
-              SignInRegisterButton(
+              CustomButton(
                 buttonText: "Sign in",
                 callback: () {
                   if (formKey.currentState!.validate()) {
@@ -156,7 +156,7 @@ class SignUpForm extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              SignInRegisterButton(
+              CustomButton(
                 buttonText: "Register",
                 callback: () {
                   if (formKey.currentState!.validate()) {
